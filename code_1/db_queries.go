@@ -89,7 +89,7 @@ func getVegetables(db *sql.DB) ([]*Vegetable, error) {
 
 	var vegetables []*Vegetable
 
-	if rows.Next() {
+	for rows.Next() {
 		var v Vegetable // ?
 
 		err = rows.Scan(&v.Name, &v.Count, &v.Price)
