@@ -4,6 +4,7 @@ import (
 	"database/sql" // стандарт: интерфейс подключения к базе данных.
 	"errors"
 	"fmt"
+	"log/slog"
 
 	_ "github.com/lib/pq" // драйвер подключения к базе данных.
 )
@@ -113,10 +114,15 @@ func addVegetable(db *sql.DB, v Vegetable) error {
 	`
 	args := []any{v.Name, v.Count, v.Price}
 
-	_, err := db.Exec(query, args...)
+	metadata, err := db.Exec(query, args...)
 	if err != nil {
 		return err
 	}
+
+	ra, _ := metadata.RowsAffected()
+	lii, _ := metadata.LastInsertId()
+
+	slog.Info("query metadata", "rows affected", ra, "last insert id", lii)
 
 	return nil
 }
