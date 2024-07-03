@@ -9,12 +9,12 @@ import (
 )
 
 const (
-	host     = "localhost"
-	port     = 5432
-	user     = "dbuser"
-	password = "dbpassword"
-	dbname   = "dbgo"
-	sslmode  = "disable"
+	HOST     = "localhost"
+	PORT     = 5432
+	USER     = "dbuser"
+	PASSWORD = "dbpassword"
+	DBNAME   = "dbgo"
+	SSLMODE  = "disable"
 )
 
 // Подключение к базе данных.
@@ -22,7 +22,7 @@ func dbconnect() (*sql.DB, error) {
 	// dsn = data source name.
 	dsn := fmt.Sprintf(
 		"host=%s port=%d user=%s password=%s dbname=%s sslmode=%s",
-		host, port, user, password, dbname, sslmode,
+		HOST, PORT, USER, PASSWORD, DBNAME, SSLMODE,
 	)
 
 	// db - набор множества подключений к базе данных.
